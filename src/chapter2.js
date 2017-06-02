@@ -155,68 +155,141 @@
 //Arrays of arrays like a spreadsheet whit rows and columns.
 // we defined the number of the rows, only rows, because the columns maybe infitie
 
-var twod = [];
-var rows = 5;
+  // var twod = [];
+  // var rows = 5;
+  //
+  // for (var i = 0; i < rows; ++i){
+  //   twod[i] = [];
+  // }
+  //
+  // console.log(twod);
+  //
+  // Array.dim = function (dimension, initial) {
+  //     var a = [], i;
+  //     for (i = 0; i < dimension; i += 1) {
+  //         a[i] = initial;
+  //     }
+  //     return a;
+  // };
+  //
+  // var myArray = Array.dim(10,8);
+  //
+  // console.log(myArray);
+  //
+  // Array.matrix = function (m, n, initial){
+  //   var a, i, j, mat = {};
+  //   for (var i = 0; i < m; i++) {
+  //     a = [];
+  //     for (var j = 0; j < n; j++) {
+  //       a[j] = initial;
+  //     }
+  //     mat[i] = a;
+  //   }
+  //   return mat;
+  // }
+  //
+  // var myMatrix = Array.matrix(4,4,0)
+  //
+  // console.log(myMatrix);
+  //
+  // Array.identity = function (n) {
+  //   var i, mat = Array.matrix(n,n,0);
+  //   for (var i = 0; i < n; i++) {
+  //     mat[i][i] = 1;
+  //   }
+  //   return mat;
+  // }
+  //
+  // myMatrix = Array.identity(3)
+  //
+  // console.log(myMatrix);
+  //
+  // var grades = [[89, 88, 0],[76, 82, 81],[91, 94, 89]]
+  //
+  // var total = 0
+  //
+  // var average = 0.0
+  //
+  // for (var row = 0; row < grades.length; row++) {
+  //   for (var col = 0; col < grades[row].length; col++)  {
+  //
+  //     total += grades[row][col];
+  //   }
+  //   average = total / grades[row].length;
+  //   console.log("student " + parseInt(row + 1) + " average: " + average.toFixed(2));
+  //   total = 0;
+  //   average = 0.0;
+  // }
 
-for (var i = 0; i < rows; ++i){
-  twod[i] = [];
-}
+// ARRAYS OF OBJECTS
 
-console.log(twod);
+  // function Point(x,y) {
+  //   this.x = x;
+  //   this.y = y;
+  // }
+  //
+  // function displayPts(arr) {
+  //   for(var i = 0; i < arr.length; ++i){
+  //     console.log(arr[i].x + ', ' + arr[i].y)
+  //   }
+  // }
+  //
+  // var p1 = new Point(1,2);
+  // var p2 = new Point(3,5);
+  // var p3 = new Point(2,8);
+  // var p4 = new Point(4,4);
+  // console.log(p1);
+  // console.log(p3);
+  // var points = [p1, p2, p3, p4];
+  //
+  // for (var i = 0; i < points.length; i++) {
+  //   console.log("Point " + parseInt(i+1) + ": " + points[i].x + ", " + points[i].y);
+  // }
+  //
+  // var p5 = new Point(12,3);
+  // console.log(points);
+  //
+  // points.push(p5);
+  // console.log("After push: ");
+  // displayPts(points);
+  //
+  //
+  //
+  // points.shift();
+  // console.log("After shift: ");
+  // displayPts(points);
 
-Array.dim = function (dimension, initial) {
-    var a = [], i;
-    for (i = 0; i < dimension; i += 1) {
-        a[i] = initial;
-    }
-    return a;
-};
 
-var myArray = Array.dim(10,8);
+// NOTE: ARRAYS IN OBJECTS
+//Use array for store complex data in a object
 
-console.log(myArray);
-
-Array.matrix = function (m, n, initial){
-  var a, i, j, mat = {};
-  for (var i = 0; i < m; i++) {
-    a = [];
-    for (var j = 0; j < n; j++) {
-      a[j] = initial;
-    }
-    mat[i] = a;
-  }
-  return mat;
-}
-
-var myMatrix = Array.matrix(4,4,0)
-
-console.log(myMatrix);
-
-Array.identity = function (n) {
-  var i, mat = Array.matrix(n,n,0);
-  for (var i = 0; i < n; i++) {
-    mat[i][i] = 1;
-  }
-  return mat;
-}
-
-myMatrix = Array.identity(3)
-
-console.log(myMatrix);
-
-var grades = [[89, 88, 0],[76, 82, 81],[91, 94, 89]]
-
-var total = 0
-
-var average = 0.0
-
-for (var row = 0; row < grades.length; row++) {
-  for (var col = 0; col < grades[row].length; col++)  {
-
-    total += grades[row][col];
-  }
-  average = total / grades[row].length;
-  console.log("student " + parseInt(row + 1) + " average: " + average.toFixed(2));
-  total = 0;
-  average = 0.0;
-}
+  // function weekTemps() {
+  //   this.dataStore = [];
+  //   this.add = add;
+  //   this.average = average;
+  // }
+  //
+  //
+  // function add(temp) {
+  //   this.dataStore.push(temp);
+  // }
+  //
+  // function average() {
+  //   var total = 0;
+  //   for (var i = 0; i < this.dataStore.length; i++) {
+  //     total += this.dataStore[i];
+  //   }
+  //   return total / this.dataStore.length;
+  // }
+  //
+  // var thisWeek = new weekTemps();
+  // thisWeek.add(52);
+  // thisWeek.add(55);
+  // thisWeek.add(61);
+  // thisWeek.add(65);
+  // thisWeek.add(55);
+  // thisWeek.add(50);
+  // thisWeek.add(52);
+  // thisWeek.add(49);
+  //
+  // console.log(thisWeek.average());
