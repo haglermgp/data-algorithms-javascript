@@ -11,23 +11,23 @@ function List() {
   this.find = find;
   this.remove = remove;
   this.append = append;
-  // this.clear = clear;
-  // this.insert = insert;
-  // this.front = front;
-  // this.end = end;
-  // this.prev = prev;
-  // this.next = next;
-  // this.length = length;
-  // this.currPos = currPos;
-  // this.moveTo = moveTo;
-  // this.getElement = getElement;
-  // this.contains = contains;
+  this.insert = insert;
+  this.clear = clear;
+  this.front = front;
+  this.end = end;
+  this.prev = prev;
+  this.next = next;
+  this.length = length;
+  this.currPos = currPos;
+  this.moveTo = moveTo;
+  this.getElement = getElement;
+  this.contains = contains;
 }
 
 // NOTE: APPEND: ADDING AN ELEMENT TO ALIST
 
 function append(element) {
-  this.dataStore[this.listSize] = element;
+  this.dataStore[this.listSize++] = element;
 }
 
 // NOTE: REMOVE: REMOVING A ELEMENT FROM A LIST
@@ -47,7 +47,7 @@ function remove(element) {
   var foundAt = this.find(element);
   if (foundAt > -1) {
     this.dataStore.splice(foundAt,1);
-    this.listSize;
+    --this.listSize;
     return true;
   }
   return false;
@@ -73,10 +73,107 @@ names.append("Cynthia");
 names.append("Raymond");
 names.toString();
 
+console.log(names);
 console.log(names.toString());
 
 names.append("Barbara");
 console.log(names.toString());
+console.log(names);
 
-names.remove("Raymond");
+names.remove("Raymond")
+console.log(names.toString())
+console.log(names);
+
+
+// NOTE: INSERT: INSERTING AN ELEMENT INTO A LIST
+//this function is different to append, beacuse with INSERT we define the position that want to add element on the list
+
+function insert(element,after) {
+  var insertPos = this.find(after) //define the existence of the reference (after) that need for add the new element
+  //and we evaluated the value, if the reference exist >> we insert new element after the element >> if not, is not posible add new element because?? you know why.
+  if (insertPos > -1) {
+    this.dataStore.splice(insertPos+1, 0, element)
+    ++this.listSize
+    return true
+  }
+  return false
+}
+
+names.insert('InsertPerson', 'Cynthia')
+console.log(names);
 console.log(names.toString());
+
+
+// NOTE: CLEAR: REMOVING ALL ELEMENTS FROM A LIST
+function clear() {
+  delete this.dataStore
+  this.dataStore = []
+  this.listSize = this.pos = 0
+}
+
+// names.clear()
+// console.log('clear');
+// console.log(names);
+// console.log(name.toString());
+
+// NOTE: CONTAINS: DETERMINING IF A GIVEN VALUE IS IN A LIST
+
+function contains (element) {
+  // body...
+  for (var i = 0; i < this.dataStore.length; i++) {
+    if (this.dataStore[i] == element) {
+      return true
+    }
+    return false
+  }
+}
+
+// NOTE: TRAVERSING A LIST : sets function allows movement through a list
+
+function front() {
+  this.pos = 0
+}
+
+function end() {
+  this.pos = this.listSize-1
+}
+
+function prev() {
+  if (this.pos > 0) {
+    --this.pos
+  }
+}
+
+function next() {
+  if (this.pos < this.listSize-1) {
+    ++this.pos
+  }
+}
+
+function currPos() {
+  return this.pos
+}
+
+function moveTo(position) {
+  this.pos = position
+}
+
+function getElement() {
+  return this.dataStore[this.pos]
+}
+
+//when aply this methods we get to pos values, and we can play with him
+
+// NOTE: INTERATING THROUGH A LIST
+//why interating with this methods??
+//consult page 41
+console.log(names.front());
+console.log(names.currPos());
+console.log(names.length());
+console.log(names);
+
+console.log(names.next());
+
+// for(names.front() names.currPos() < names.length() names.next()){
+//   console.log(names.getElement());
+// }
