@@ -1,3 +1,4 @@
+
 // NOTE: LISTS
 //---definition: is a ordered sequence of data. Each data stored in a list is called an element.
 
@@ -223,6 +224,7 @@ for (var i = 0; i < movies.length; i++) {
 }
 // display movie list
 
+//INSTANCEOF >> test if the object is a customer object
 function displayList(list) {
   for(list.front(); list.currPos() < list.lengtj(); list.next())
     if(list.getElement() instanceof Customer){
@@ -231,4 +233,11 @@ function displayList(list) {
     else{
       console.log(list.getElement());
     }
+}
+
+var customer = new List();
+
+function Customer(name, movie) {
+  this.name = name
+  this.movie = movie
 }
