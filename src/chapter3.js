@@ -73,16 +73,16 @@ names.append("Cynthia");
 names.append("Raymond");
 names.toString();
 
-console.log(names);
-console.log(names.toString());
-
-names.append("Barbara");
-console.log(names.toString());
-console.log(names);
-
-names.remove("Raymond")
-console.log(names.toString())
-console.log(names);
+// console.log(names);
+// console.log(names.toString());
+//
+// names.append("Barbara");
+// console.log(names.toString());
+// console.log(names);
+//
+// names.remove("Raymond")
+// console.log(names.toString())
+// console.log(names);
 
 
 // NOTE: INSERT: INSERTING AN ELEMENT INTO A LIST
@@ -99,9 +99,9 @@ function insert(element,after) {
   return false
 }
 
-names.insert('InsertPerson', 'Cynthia')
-console.log(names);
-console.log(names.toString());
+// names.insert('InsertPerson', 'Cynthia')
+// console.log(names);
+// console.log(names.toString());
 
 
 // NOTE: CLEAR: REMOVING ALL ELEMENTS FROM A LIST
@@ -131,7 +131,7 @@ function contains (element) {
 // NOTE: TRAVERSING A LIST : sets function allows movement through a list
 
 function front() {
-  this.pos = 0
+  this.pos = 0;
 }
 
 function end() {
@@ -167,13 +167,68 @@ function getElement() {
 // NOTE: INTERATING THROUGH A LIST
 //why interating with this methods??
 //consult page 41
-console.log(names.front());
-console.log(names.currPos());
-console.log(names.length());
-console.log(names);
 
-console.log(names.next());
+// var names2 = new List()
+//
+// names2.append('a')
+// names2.append('b')
+// names2.append('c')
+// names2.append('d')
+// names2.append('e')
+// names2.append('f')
+//
+// console.log('start here');
+//
+// console.log(names2.front());
+// console.log(names2.getElement());
+//
+// console.log(names2.next());
+// console.log(names2.getElement());
+// console.log(names.currPos());
+// console.log(names.length());
+// console.log(names.next());
+// console.log(names.getElement);
 
-// for(names.front() names.currPos() < names.length() names.next()){
+// for(names.front(); names.currPos() < names.length(); names.next()){
 //   console.log(names.getElement());
 // }
+
+
+
+// NOTE: A LIST-BASED APPLICATION
+//READING TEXT FILES
+
+// cde fragmento for read contest of the our file create recently
+
+// var movies = read(chapter3files.txt).split('\n');
+
+// read the content chapter3files and split into individuals lines. this lines is stored in MOVIES
+console.log(movies);
+// Movies contains no only initial content in "chapter3file.txt", also contain lines of the space, because "split('\n')" create a new line and replace with spaces foe each line of the content.
+
+//Now we have delete this white space with "trim()"
+function createArr(file) {
+  var arr = read(file).split("\n")
+  for (var i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].trim()
+  }
+  return arr;
+}
+
+// NOTE: USING LIST TO MANAGE LIST BASSED APP
+// take the List and store its contents in a list
+var movieList = new List()
+for (var i = 0; i < movies.length; i++) {
+  movieList.append(movies[i])
+}
+// display movie list
+
+function displayList(list) {
+  for(list.front(); list.currPos() < list.lengtj(); list.next())
+    if(list.getElement() instanceof Customer){
+      console.log(list.getElement()['name'] + ", " + list.getElement()['movie'])
+    }
+    else{
+      console.log(list.getElement());
+    }
+}
