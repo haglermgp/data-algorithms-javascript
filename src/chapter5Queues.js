@@ -58,7 +58,7 @@ function empty() {
 
 var q = new Queue()
 
-q.enqueue('hagler')
+q.enqueue('jim')
 q.enqueue('melina')
 q.enqueue('melissa')
 
@@ -69,3 +69,13 @@ console.log("after dequeue: "+ toString(q));
 
 console.log('show FRONT of queue: '+ q.front());
 console.log('show BACK of queue: '+ q.back());
+
+
+// NOTE: USING THE QUEUE CLASS : ASSIGNING PARTNERS AT A SQUARE DANCE
+
+var fs = require('fs');
+
+fs.readFile('my-file.txt', 'utf8', function(err, data) {
+    if (err) throw err;
+    console.log(data);
+});
