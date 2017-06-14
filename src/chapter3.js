@@ -201,7 +201,7 @@ function getElement() {
 
 // cde fragmento for read contest of the our file create recently
 
-// var movies = read(chapter3files.txt).split('\n');
+var movies = readFile(chapter3files.txt).split('\n');
 
 // read the content chapter3files and split into individuals lines. this lines is stored in MOVIES
 console.log(movies);
@@ -209,7 +209,7 @@ console.log(movies);
 
 //Now we have delete this white space with "trim()"
 function createArr(file) {
-  var arr = read(file).split("\n")
+  var arr = readFile(file).split("\n")
   for (var i = 0; i < arr.length; i++) {
     arr[i] = arr[i].trim()
   }
@@ -224,20 +224,52 @@ for (var i = 0; i < movies.length; i++) {
 }
 // display movie list
 
-//INSTANCEOF >> test if the object is a customer object
+//INSTANCEOF >> test if the object is a customer object (customer object is the name and movie that search customers)
 function displayList(list) {
-  for(list.front(); list.currPos() < list.lengtj(); list.next())
+  for(list.front(); list.currPos() < list.lengtj(); list.next()){
     if(list.getElement() instanceof Customer){
       console.log(list.getElement()['name'] + ", " + list.getElement()['movie'])
     }
     else{
       console.log(list.getElement());
     }
-}
 
+  }
+}
+//create a list of movies that customer search
 var customer = new List();
 
 function Customer(name, movie) {
   this.name = name
   this.movie = movie
 }
+
+// function to check out a movie
+// if movie that be on the list, this is remove of the customerList
+// if isn't that no have change or remove on the list
+
+function checkOut(name, movie, filmList, customerList) {
+  if (movieList.contains(movie)) {
+    var c = new Customer(name, movie);
+    customerList.append(c);
+    filmList.remove(movie)
+  }
+  else {
+    console.log(movie + "is not available.");
+  }
+}
+
+//test the checkOut()
+var movie = creatArr('chapter3files.txt')
+var movieList = new List()
+var customers = new List()
+
+for (var i = 0; i < movies.length; i++) {
+  movieList.append(movies[i])
+}
+
+console.log('available movies: \n');
+// console.log(movieList);
+// checkOut('Jane Doe', 'The Godfather', movieList, customers)
+// console.log('\nCustomer Rentals: \n');
+// console.log(customers);
