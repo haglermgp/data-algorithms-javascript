@@ -17,3 +17,13 @@
     this.element = element
     this.next = null
   }
+
+//THE LINKED LIST CLASS
+  //this List Class include the functionality for a linked list : insert, find, delet, etc nodes and this is the constructor for creating new linked list.
+  function LList() {
+    this.head = new Node('head')
+    this.find = find
+    this.insert = insert
+    this.remove = remove
+    this.display = display
+  }
