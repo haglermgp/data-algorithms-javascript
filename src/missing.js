@@ -1,3 +1,4 @@
+'use strict'
 function EvaluateLesson() {
   this.info_lesson = new Object()
   // this.input_system_lesson = new Array()
@@ -15,47 +16,49 @@ function takeValues(system, user) {
 }
 
 function evalCompare() {
-  let system = this.info_lesson.input_system_lesson.toLowerCase().split('')
-  let user = this.info_lesson.input_user_lesson.toLowerCase().split('')
+  let index_user = 0
+  let user_err = {}
+  user_err.detail = []
 
-  let user_correct = ''
-  let user_err = new Object()
+  let system = this.info_lesson.input_system_lesson.toLowerCase().replace(/ /g, '').split('')
+  let user = this.info_lesson.input_user_lesson.toLowerCase().replace(/ /g, '').split('')
+  this.info_lesson.user_err = user_err
 
-  user_correct = system.map((el, index) => {
-    let count_err = 0
-    let index_user = index
-    debugger
-    if (el == user[index_user]) {
-      return true
+  for (let i = 0; i < system.length; i++) {
+
+    if (system[i] == user[index_user]) {
+
+      ++index_user
     }else {
       let state = true
       while (state) {
-        if (el == user[index_user]) {
-          debugger
+
+        if (system[i] == user[index_user] ) {
+
           state = false
+        }else {
+
+          user_err.detail.push({
+            'index': index_user,
+            'caracter': user[index_user]
+          })
         }
-
-        user_err.index = index_user
-        user_err.caracter = user[index_user]
-        debugger
-
-        ++count_err
         ++index_user
       }
     }
-  })
+  }
+
 }
 
 
 let system_val = 'hello goodbye'
-let user_val = 'hellow  goodbye'
+let user_val = 'hello oodbye'
 
 let evalLesson = new EvaluateLesson()
 
 evalLesson.takeValues(system_val, user_val)
-
+//
 evalLesson.evalCompare()
 
-console.log(evalLesson.info_lesson);
-console.log(evalLesson.info_lesson.input_system_lesson);
-console.log(evalLesson.info_lesson.input_user_lesson);
+
+console.log(evalLesson);
