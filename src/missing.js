@@ -1,64 +1,66 @@
 'use strict'
-function EvaluateLesson() {
-  this.info_lesson = new Object()
-  // this.input_system_lesson = new Array()
-  // this.input_user_lesson = new Array()
 
-  //function to use in compare process
+var similarity = require("similarity")
+var jsDiff = require("diff")
+
+function CompareWords() {
+  this.input_user_lesson = new Array()
+  this.input_system_lesson = new Array()
+
+  //my functiones
+  this.evaluateWords = evaluateWords
   this.takeValues = takeValues
-  this.evalCompare = evalCompare
-  // this.loopCompare = loopCompare
+  this.evalDiff = evalDiff
 }
 
 function takeValues(system, user) {
-  this.info_lesson.input_system_lesson = system
-  this.info_lesson.input_user_lesson = user
+  this.input_system_lesson = system
+  this.input_user_lesson = user
 }
 
-function evalCompare() {
-  let index_user = 0
-  let user_err = {}
-  user_err.detail = []
+function evaluateWords() {
 
-  let system = this.info_lesson.input_system_lesson.toLowerCase().replace(/ /g, '').split('')
-  let user = this.info_lesson.input_user_lesson.toLowerCase().replace(/ /g, '').split('')
-  this.info_lesson.user_err = user_err
+  let system = this.input_system_lesson.toLowerCase().split(' ')
+  // let user = this.input_user_lesson.toLowerCase().split('  ')
+  let user1 = this.input_user_lesson.toLowerCase().replace(/  +/g, ' ').split(' ');
 
-  for (let i = 0; i < system.length; i++) {
+  let user = user1.filter((el) => {
+    return el !== ""
+  })
 
-    if (system[i] == user[index_user]) {
-
-      ++index_user
-    }else {
-      let state = true
-      while (state) {
-
-        if (system[i] == user[index_user] ) {
-
-          state = false
-        }else {
-
-          user_err.detail.push({
-            'index': index_user,
-            'caracter': user[index_user]
-          })
-        }
-        ++index_user
-      }
+  if (system.length = user.length) {
+    for (var i = 0; i < system.length; i++) {
+      console.log(system[i], user[i]);
+      console.log(similarity(system[i], user[i]));
     }
   }
-
 }
 
 
-let system_val = 'hello goodbye'
-let user_val = 'hello oodbye'
+function evalDiff() {
+  let system = this.input_system_lesson.toLowerCase()
+  // let user = this.input_user_lesson.toLowerCase().split('  ')
+  let user = this.input_user_lesson.toLowerCase()
 
-let evalLesson = new EvaluateLesson()
+  let diff = jsDiff.diffChars(system, user)
 
-evalLesson.takeValues(system_val, user_val)
-//
-evalLesson.evalCompare()
+  // diff.forEach(function (part) {
+  //   let value
+  //   if (part.added) {
+  //     value = part.value.toUperCase()
+  //   }else if (part.removed) {
+  //
+  //   }
+  //
+  // })
+
+  let simm = similarity(system, user)
+  console.log(diff);
+  console.log(simm);
+}
 
 
-console.log(evalLesson);
+let evalLeson = new CompareWords()
+
+evalLeson.takeValues('unai scomo esta tu', 'unay como estas tu' )
+evalLeson.evalDiff()
