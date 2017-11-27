@@ -49,17 +49,18 @@ function evalDiff() {
   for (var i = 0; i < diff.length; i++) {
     if ( diff[i].added == undefined && diff[i].removed == undefined ) {
       user2 += diff[i].value
+      user2 += ' '
     }else if (diff[i].value == " " && diff[i].removed !== undefined) {
       user2 += diff[i].value
     }else if (diff[i].value !== " " && diff[i].added ) {
-      user2 += diff[i].value.replace(/ +/g, '')
+      user2 += diff[i].value.replace(/ +/g, '') 
     }
   }
   console.log(diff);
   console.log(user2);
-
+  
   let user3 = user2.split(" ")
-  let system3 = system.split(" ")
+  let system3 = system.replace(/  +/g, ' ').split(" ")
   let puntaje = similarity(system, user2)
   let puntaje_temporal = 0
 
@@ -102,7 +103,7 @@ function evalDiff() {
 
 let evalLeson = new CompareWords()
 
-evalLeson.takeValues('hola a todos', 'holia odos' )
+evalLeson.takeValues('hola a todos', 'holiatodos' )
 evalLeson.evalDiff()
 
 console.log(evalLeson);
